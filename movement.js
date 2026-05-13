@@ -1,27 +1,20 @@
-// let exGrid = [['0', '1'],["4","2"]];
-// for (let x = 0; x < exGrid.length; x++){
-//     for (let y = 0; y < exGrid[x].length; y++){
-//         console.log(`(${x},${exGrid[x][y]})`);
-//     };
-// };
+//create tile descriptions instead of storing tile data in every tile
+//basically have program read a value to render the approiate tile instead of storing tile data in every tile
 
-const gridWidth = 1000;
-const gridHeight = 1000;
-let grid = new Array(gridWidth);
-for (let x = 0; x < grid.length; x++){
-    grid[x] = new Array(gridHeight);
-    for (let y = 0; y < grid[x].length; y++){
-        grid[x][y] = y;
+let worldMap = [];
+
+let tile = new Map();
+tile.set(1, {
+    "char":"#",
+    "walkabkle": false,
+});
+
+let arr=[[1],[1],[1],[1]]
+
+function renderTile(chunk) {
+    for (let x = 0; x < arr.length; x++){
+        
     }
+
 };
-
-function arrScroll(map) {
-    for (let x = 0; x < map.length; x++){
-        for (let y = 0; y < map.length; y++){
-            console.log(`(${x},${y})`)
-        }
-    }
-}
-
-arrScroll(grid);
-// console.log(grid);
+ 
