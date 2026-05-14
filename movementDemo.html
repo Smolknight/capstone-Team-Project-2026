@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+  </head>
+
+  <body style="display: flex; justify-content: center;">
+    <div id="display"></div>
+  </body>
+</html>
+
+<script>
+  //load the game row by row, basically recreate how a dark room does their map
+
+  const def_tiles = new Map();
+
+  def_tiles.set(1, {
+    char: "#",
+
+    walkable: false,
+  });
+
+  def_tiles.set(0, {
+    char: " ",
+
+    walkable: true,
+  });
+
+  const display = document.getElementById("display");
+
+  function makeChunk(size) {
+    let chunk = new Array(size);
+
+    for (let x = 0; x < chunk.length; x++) {
+      chunk[x] = new Array(size);
+
+      for (let y = 0; y < chunk[x].length; y++) {
+        chunk[x][y] = y;
+      }
+    }
+
+    return chunk;
+  }
+
+  let chunk = makeChunk(22);
+
+  // chunk to string only matters when displaying for user
+
+  // don't use the functions below for any calculations
+
+  function chunkToStr(chunk) {
+    return chunk.join("").split(",").join("");
+  }
+  console.log(chunk)
+  chunk.forEach((arr) => {
+    let textRow = document.createElement("p");
+    textRow.id=`2`
+    textRow.textContent = arr.join("");
+
+    display.appendChild(textRow);
+  });
+</script>
