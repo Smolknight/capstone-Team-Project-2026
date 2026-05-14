@@ -6,7 +6,16 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Document</title>
+    <title>Movement Demo</title>
+    <style>
+      .map{
+        letter-spacing: 8px;
+        font-family: monospace;
+        white-space: pre;
+        line-height: 1;
+        font-size: 3em;
+      }
+    </style>
   </head>
 
   <body style="display: flex; justify-content: center;">
@@ -17,7 +26,12 @@
 <script>
   //load the game row by row, basically recreate how a dark room does their map
 
+  //below the dictionary for tiles
   const def_tiles = new Map();
+
+  const player={
+    coord:[0,1],
+  }
 
   def_tiles.set(1, {
     char: "#",
@@ -31,37 +45,37 @@
     walkable: true,
   });
 
+  def_tiles.set("P",{
+    char:"o"
+  });
+
   const display = document.getElementById("display");
 
-  function makeChunk(size) {
-    let chunk = new Array(size);
+  let testMap=[
+    [1,1,1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1,1,1],
+    [1,1,1,0,0,0,1,1,1],
+    [1,1,1,0,'P',0,1,1,1],
+    [1,1,1,0,0,0,1,1,1],
+    [1,1,1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1,1,1],
+  ]
 
-    for (let x = 0; x < chunk.length; x++) {
-      chunk[x] = new Array(size);
 
-      for (let y = 0; y < chunk[x].length; y++) {
-        chunk[x][y] = y;
+  function displayMap(map){
+    //reads the map row by row
+    for(let x=0;x<map.length;x++){
+      let textRow = document.createElement("p");
+      
+      for(let y=0;y<map[x].length;y++){
+        let char=def_tiles.get(map[x][y]).char;
+        textRow.textContent+=char;
       }
-    }
+      textRow.classList.add('map');
+      textRow.id=x;
+      display.appendChild(textRow);
+    };
+  };
 
-    return chunk;
-  }
-
-  let chunk = makeChunk(22);
-
-  // chunk to string only matters when displaying for user
-
-  // don't use the functions below for any calculations
-
-  function chunkToStr(chunk) {
-    return chunk.join("").split(",").join("");
-  }
-  console.log(chunk)
-  chunk.forEach((arr) => {
-    let textRow = document.createElement("p");
-    textRow.id=`2`
-    textRow.textContent = arr.join("");
-
-    display.appendChild(textRow);
-  });
+  displayMap(testMap);
 </script>
