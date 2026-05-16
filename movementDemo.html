@@ -30,8 +30,9 @@
   const def_tiles = new Map();
 
   const player={
-    coord:[0,1],
-  }
+    x:null,
+    y:null
+  };
 
   def_tiles.set(1, {
     char: "#",
@@ -61,6 +62,16 @@
     [1,1,1,1,1,1,1,1,1],
   ]
 
+  function findPlayer(map){
+    for(let x=0;x<map.length;x++){
+      for(let y=0;x<map[x].length;y++){
+        if(map[x][y]=='P'){
+          player.x=x;
+          player.y=y;
+        };
+      };
+    }
+  };
 
   function displayMap(map){
     //reads the map row by row
