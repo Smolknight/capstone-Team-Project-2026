@@ -63,21 +63,23 @@
   ]
 
   function findPlayer(map){
+    if(player.x === null || player.y === null){
     for(let x=0;x<map.length;x++){
-      for(let y=0;x<map[x].length;y++){
+      for(let y=0;y<map[x].length;y++){
         if(map[x][y]=='P'){
           player.x=x;
           player.y=y;
+          break;
         };
       };
-    }
+    }};
   };
 
   function displayMap(map){
     //reads the map row by row
     for(let x=0;x<map.length;x++){
       let textRow = document.createElement("p");
-      
+
       for(let y=0;y<map[x].length;y++){
         let char=def_tiles.get(map[x][y]).char;
         textRow.textContent+=char;
@@ -88,5 +90,16 @@
     };
   };
 
+  function moveUp(){
+    let currPosition=[player.x,player.y];
+    let nxtPosition=[player.x,player.y-1];
+
+    if(nxtPosition[2]<0){
+      return;
+    };
+
+  };
+
   displayMap(testMap);
+  findPlayer(testMap);
 </script>
